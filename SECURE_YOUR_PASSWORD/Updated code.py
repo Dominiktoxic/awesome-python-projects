@@ -1,37 +1,12 @@
-sym = {
-          'a' : '!!',
-          'b' : '@',
-          'c' : '#',
-          'd' : '$',
-          'e' : '^',
-          'f' : '}',
-          'g' : ']',
-          'h' : ')',
-          'i' : '*',
-          'j' : '=',
-          'k' : '+',
-          'l' : '-',
-          'm' : '_',
-          'n' : '>',
-          'o' : '<',
-          'p' : '.',
-          'q' : '%',
-          'r' : '&',
-          's' : '(',
-          't' : '{',
-          'u' : '[',
-          'x' : '?',
-          'y' : ',',
-          'z' : '|',
-          }
+# pip install cryptography
 
-inp = input("enter your name:")
-print(inp)
-password = ''
+from crypography.fernet import Fernet
 
-for i in inp:
-        for key, val in sym.items():
-                if i in key:
-                        password = password + val
-print("Name you entered : ", inp)
-print("Password : ", password)
+key = Fernet.generate_key()
+
+text = input("Text: ")
+
+encrypted = Fernet(key).encrypt(text.encode())
+
+print(f"Encrypted: {encrypted}")
+print(f"Original: {text}")
